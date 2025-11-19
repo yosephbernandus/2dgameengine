@@ -1,8 +1,6 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_events.h>
-#include <SDL2/SDL_keycode.h>
-#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
 #include <iostream>
 
 Game::Game() {
@@ -20,12 +18,16 @@ void Game::Initialize() {
         return;
     };
 
+    SDL_DisplayMode displayMode;
+    SDL_GetCurrentDisplayMode(0, &displayMode);
+    windowWidth = 800;// displayMode.w;
+    windowHeight = 600;// displayMode.h;
     window = SDL_CreateWindow(
         NULL,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        800,
-        600,
+        windowWidth,
+        windowHeight,
         SDL_WINDOW_BORDERLESS
     );
 
@@ -38,6 +40,8 @@ void Game::Initialize() {
         std::cerr << "Error creating SDL renderer." << std::endl;
         return;
     }
+
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     isRunning = true;
 }
