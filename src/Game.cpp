@@ -1,6 +1,7 @@
 #include "Game.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_timer.h>
 #include <glm/glm.hpp>
 #include <iostream>
 
@@ -69,6 +70,11 @@ void Game::Setup() {
 }
 
 void Game::Update() {
+    // If too fast, waste some time until we reach the MILLISECS_PER_FRAME
+    while (!SDL_TICKS_PASSED(SDL_GetTicks(), millisecsPreviousFrame + MILLISECS_PER_FRAME));
+
+    // store the current frame time
+    millisecsPreviousFrame = SDL_GetTicks();
     playerPosition.x += playerVelocity.x;
     playerPosition.y += playerVelocity.y;
 }
