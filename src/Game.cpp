@@ -72,16 +72,25 @@ void Game::Setup() {
 
 void Game::Update() {
     // If too fast, waste some time until we reach the MILLISECS_PER_FRAME
+
+    // Update = Movement Based on Pixel Per Second
+    // FPS Limit
+    // CAP FPS BEGIN //
+    // UNCOMENT: Will CAP the LIMIT FPS based on SDL_Delay
+    // COMMENT: Will bypass the LIMIT FPS (60 FPS)
+    // 1. Calculate how ms need to wait
     int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - millisecsPreviousFrame);
     if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
         SDL_Delay(timeToWait);
     }
 
-    // difference in ticks since the last frame, convert to seconds
+    //2. difference in ticks since the last frame, convert to seconds
     float_t deltaTime = (SDL_GetTicks() - millisecsPreviousFrame) / 1000.0f;
 
-    // store the current frame time
+    //3. keep track the ms of previous time
     millisecsPreviousFrame = SDL_GetTicks();
+
+    // store the current frame time
     playerPosition.x += playerVelocity.x * deltaTime;
     playerPosition.y += playerVelocity.y * deltaTime;
 }
