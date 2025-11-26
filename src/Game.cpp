@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_timer.h>
+#include <cmath>
 #include <glm/glm.hpp>
 #include <iostream>
 
@@ -77,7 +78,7 @@ void Game::Update() {
     }
 
     // difference in ticks since the last frame, convert to seconds
-    double deltaTime = (SDL_GetTicks() - millisecsPreviousFrame) / 1000.0;
+    float_t deltaTime = (SDL_GetTicks() - millisecsPreviousFrame) / 1000.0f;
 
     // store the current frame time
     millisecsPreviousFrame = SDL_GetTicks();
