@@ -13,7 +13,7 @@ Game::Game() {
 }
 
 Game::~Game() {
-    Logger::Log("Game donstructor called!");
+    Logger::Err("Game donstructor called!");
 }
 
 void Game::Initialize() {
