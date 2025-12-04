@@ -1,9 +1,7 @@
 #include "Game.h"
-#include "Logger.h"
+#include "../Logger/Logger.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_timer.h>
-#include <cmath>
 #include <glm/glm.hpp>
 #include <iostream>
 
