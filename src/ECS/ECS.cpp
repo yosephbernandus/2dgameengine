@@ -13,7 +13,7 @@ void System::AddEntityToSystem(Entity entity) {
 void System::RemoveEntityFromSystem(Entity entity) {
     // There is lambda function on [&entity] modern ways c++
     entities.erase(std::remove_if(entities.begin(), entities.end(), [&entity](Entity other) {
-        return entity.GetId() == other.GetId();
+        return entity == other;
     }), entities.end());
 }
 
