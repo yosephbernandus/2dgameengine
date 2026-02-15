@@ -1,4 +1,5 @@
 #include "ECS.h"
+#include <algorithm>
 
 // TODO: Implement all the functions from ECS.h
 int Entity::GetId() const {
@@ -6,10 +7,14 @@ int Entity::GetId() const {
 }
 
 void System::AddEntityToSystem(Entity entity) {
-
+    entities.push_back(entity);
 }
-void System::RemoveEntityFromSystem(Entity entity) {
 
+void System::RemoveEntityFromSystem(Entity entity) {
+    // There is lambda function on [&entity] modern ways c++
+    entities.erase(std::remove_if(entities.begin(), entities.end(), [&entity](Entity other) {
+        return entity.GetId() == other.GetId();
+    }), entities.end());
 }
 
 std::vector<Entity> System::GetSystemEntities() const {
